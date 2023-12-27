@@ -56,7 +56,8 @@ public class Player : Damagable, IPunObservable
     {
         if(Physics.Raycast(_weapon.position, _weapon.forward, out RaycastHit hit, 500f))
         {
-            var victin = hit.rigidbody?.GetComponent<Player>();
+            var victin = hit.rigidbody?.GetComponentInParent<Player>();
+
             if (victin != null)
             {
                 victin.TakeDamage(_damage);
