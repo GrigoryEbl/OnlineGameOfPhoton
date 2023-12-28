@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ScalerCapsule : MonoBehaviour
 {
-    [SerializeField] private Vector3 _targetScale;
+    [SerializeField] private Vector3 _targetSize;
     [SerializeField] private float _speed = 0.1f;
 
     private Vector3 _startSize;
+    private Vector3 _currentTarget;
 
     private void Awake()
     {
@@ -16,10 +17,12 @@ public class ScalerCapsule : MonoBehaviour
 
     void Update()
     {
-        transform.localScale = new Vector3(Mathf.PingPong(Time.time, _targetScale.x - _startSize.x),
-                                           Mathf.PingPong(Time.time, _targetScale.y - _startSize.y),
-                                           Mathf.PingPong(Time.time, _targetScale.z - _startSize.z));
 
+        if (transform.localScale == _targetSize)
+            _currentTarget = _startSize;
+        else if (transform.localScale == _startSize)
+            _currentTarget = _targetSize;
 
+        transform.localScale = Vector3.MoveTowards(transform.localScale, _currentTarget, Time.deltaTime * _speed);
     }
 }
