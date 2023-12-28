@@ -15,7 +15,7 @@ public class ScalerCapsule : MonoBehaviour
         _startSize = transform.localScale;
     }
 
-    void Update()
+    private void Update()
     {
 
         if (transform.localScale == _targetSize)
