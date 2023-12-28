@@ -335,6 +335,7 @@ MonoBehaviour:
   _sensitivityY: -2500
   _weapon: {fileID: 2014635779209055916}
   _damage: 20
+  _spawner: {fileID: 0}
 --- !u!75 &3531624744481278727
 ConstantForce:
   m_ObjectHideFlags: 0

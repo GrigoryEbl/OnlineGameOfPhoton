@@ -8,6 +8,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _prefab;
     [SerializeField] private Transform _camera;
     [SerializeField] private HealthPresenter _healthPresenter;
+    [SerializeField] private MiniMap _miniMap;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
             _camera.transform.localPosition = Vector3.zero;
             _camera.transform.localRotation = Quaternion.identity;
             _healthPresenter.Connect(player);
+            _miniMap.Initialize(player.transform);
         }
     }
 }

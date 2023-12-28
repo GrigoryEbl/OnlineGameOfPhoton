@@ -1113,6 +1113,7 @@ MonoBehaviour:
   _prefab: {fileID: 2451436144892813102, guid: 825f31d1b0abbf746adb735b42cf364b, type: 3}
   _camera: {fileID: 962892486}
   _healthPresenter: {fileID: 1452292461}
+  _miniMap: {fileID: 2002801488}
 --- !u!1 &383667864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,9 +1894,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000822550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76838903e1a1dfb4691369f9b303e6d6, type: 3}
+  m_Script: {fileID: 11500000, guid: bbf2e473c8f3ca3468604145fc308ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnableObject: {fileID: 4756276558420964108, guid: f0d7a2d44cd1e4f4f83c2884273b5826, type: 3}
+  _pushDelay: 0.3
 --- !u!1 &1033735001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,7 +2801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3254717, g: 0.7360952, b: 1, a: 0.3137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2832,6 +2835,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2002801483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e23590aff7357f42822e75a9bfcfd9c, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f2ff8f2bafb4540a45a236f0b2bb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefab: {fileID: 6062153786651695759, guid: cf92500eb748f36478bd9844983a06bf, type: 3}
+  _scale: 1

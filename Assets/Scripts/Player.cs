@@ -16,6 +16,7 @@ public class Player : Damagable, IPunObservable
     [SerializeField] private float _sensitivityY;
     [SerializeField] private Transform _weapon;
     [SerializeField] private float _damage;
+    [SerializeField] private Spawner _spawner;
 
     private ConstantForce _force;
     private Rigidbody _rigidbody;
@@ -24,6 +25,8 @@ public class Player : Damagable, IPunObservable
 
     private void Awake()
     {
+        FindObjectOfType<MiniMap>().Create(transform);
+        _spawner = FindObjectOfType<Spawner>();
         _health = 100;
         _force = GetComponent<ConstantForce>();
         _rigidbody = GetComponent<Rigidbody>();
@@ -42,7 +45,7 @@ public class Player : Damagable, IPunObservable
             _force.relativeForce = Vector3.forward * _forwardForce * Input.GetAxis("Vertical") +
                                    Vector3.right * _strafeForce * Input.GetAxis("Horizontal");
 
-            _force.relativeTorque = Vector3.forward * _rollForce * Input.GetAxis("Roll")   +
+            _force.relativeTorque = Vector3.forward * _rollForce * Input.GetAxis("Roll") +
                                     Vector3.right * _sensitivityY * Input.GetAxis("Mouse Y") +
                                     Vector3.up * _sensitivityX * Input.GetAxis("Mouse X");
 
@@ -54,15 +57,22 @@ public class Player : Damagable, IPunObservable
 
     public void Shoot()
     {
-        if(Physics.Raycast(_weapon.position, _weapon.forward, out RaycastHit hit, 500f))
+        if (Physics.Raycast(_weapon.position, _weapon.forward, out RaycastHit hit, 500f))
         {
             var victin = hit.rigidbody?.GetComponentInParent<Player>();
 
             if (victin != null)
             {
                 victin.TakeDamage(_damage);
-                _photonView.RPC("ApplyDamage", RpcTarget.Others,victin.gameObject.GetPhotonView().ViewID, _damage);
+                _photonView.RPC("ApplyDamage", RpcTarget.Others, victin.gameObject.GetPhotonView().ViewID, _damage);
             }
+
+            _photonView.RPC("SpawnLaser", RpcTarget.All, _weapon.position, hit.point);
+        }
+        else
+        {
+
+            _photonView.RPC("SpawnLaser", RpcTarget.All, _weapon.position, _weapon.position + _weapon.forward * 500f);
         }
     }
 
@@ -81,9 +91,14 @@ public class Player : Damagable, IPunObservable
         player.TakeDamage(_damage);
     }
 
+    [PunRPC]
+    public void SpawnLaser(Vector3 start, Vector3 end)
+    {
+        _spawner.Pull(start, end);
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
     }
 
     public override void OnDie()
