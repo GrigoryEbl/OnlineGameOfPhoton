@@ -3,7 +3,7 @@ using DG.Tweening;
 
 namespace DOTween
 {
-    public class ScalerCapsule : MonoBehaviour
+    public class Scaler : MonoBehaviour
     {
         [SerializeField] private Vector3 _scale;
         [SerializeField] private float _duration;

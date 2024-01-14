@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 namespace DOTween
 {
-    public class MooverSphere : MonoBehaviour
+    public class Mover : MonoBehaviour
     {
         [SerializeField] private Vector3 _position;
         [SerializeField] private float _duration;

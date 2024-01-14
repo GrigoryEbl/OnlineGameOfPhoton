@@ -15,3 +15,4 @@ public class ChangeText : MonoBehaviour
         _text3.DOText("Hack text", 3f, true, ScrambleMode.All);
     }
 }
+
