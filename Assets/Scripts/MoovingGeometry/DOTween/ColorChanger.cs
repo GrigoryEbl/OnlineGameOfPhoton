@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class ChangeColor : MonoBehaviour
+public class ColorChanger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _color;
